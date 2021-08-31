@@ -1,0 +1,266 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 15
+#include <locale.h>
+
+// declaração da struct pessoa
+typedef struct cadastro
+{
+char descricao[50];
+int quantidadeEstoque;
+int categoria;
+int lote;
+
+char titulo[50];
+char nomeautor[50];
+char nomeobra[30];
+int edicao;
+char editora[10];
+int isbn;
+int quantidadeExemplares;
+int caixa;
+int ano;
+int tipo;
+   
+   
+} Cadastroproduto;
+
+//prototipação das funções
+void identificacao();
+void cadastrarObra(Cadastroproduto produto[MAX]);
+void ListarTodasObras(Cadastroproduto produto[MAX]);
+void ListarObrasTipo(int buscaCategoria, Cadastroproduto produto[MAX]);
+void ListarObrasCaixa(int buscaLote, Cadastroproduto produto[MAX]);
+int contarRegistro(Cadastroproduto produto[MAX]);
+
+int main()
+{
+//declaração do vetor de registro do tipo produto
+Cadastroproduto produto[MAX];
+setlocale(LC_ALL, "Portuguese");
+
+int op, buscaLote, buscaCategoria;
+do{
+identificacao();
+printf("\n1 - Cadastrar Obra");
+printf("\n2 - Listar todas as obras");
+printf("\n3 - Listar obras por categoria");
+printf("\n4 - Listar obras por caixa");
+printf("\n0 - Sair");
+printf("\nEscolha Opção: ");
+scanf("%d", &op);
+
+switch(op){
+case 1:
+cadastrarObra(produto);
+break;
+case 2:
+ListarTodasObras(produto);
+printf("\n");
+system("pause");
+break;
+case 3:
+printf("Informe a categoria da obra:  ");;
+fflush(stdin);
+scanf("%d", &buscaCategoria);
+ListarObrasTipo(buscaCategoria, produto);
+printf("\n");
+system("pause");
+break;
+case 4:
+printf("Informe a caixa da obra:  ");;
+fflush(stdin);
+scanf("%d", &buscaLote);
+ListarObrasCaixa(buscaLote, produto);
+printf("\n");
+system("pause");
+break;
+case 0:
+printf("\nSaindo do sistema!!!");
+break;
+default:
+printf("Valor digitado incorreto!");
+system("pause");
+break;
+}
+}while(op!=0);
+return 0;
+}
+
+
+
+void identificacao(){
+system("cls");
+int t;
+for(t=0; t<80; t++) printf("-");
+printf("\n >>>> CASSIA <<<<");
+printf("\n >>>> RA: **** <<<< ");
+printf("\n >>>> Engenharia de Software <<<< \n");
+for(t=0; t<80; t++) printf("-");
+}
+void cadastrarObra(Cadastroproduto produto[MAX])
+{
+identificacao();
+int i;
+char resp='n';
+FILE * arq;
+ 
+arq = fopen("dadosObra.txt", "a+");
+
+if(arq != "n")
+{
+for(i = 0; i < 2; i++){
+
+printf("\nInforme os dados da obra: ");
+printf("\n*******************DESCRIÇÃO********************** \n");
+fflush(stdin);
+gets(produto[i].descricao);
+
+printf("Nome do autor:  ");
+fflush(stdin);
+
+scanf("%s", &produto[i].nomeautor);
+printf("Nome da obra:  ");
+fflush(stdin);
+
+scanf("%s", &produto[i].nomeobra);
+printf("Edição : ");
+fflush(stdin);
+
+scanf("%d", &produto[i].edicao);
+printf("Editora :  ");
+fflush(stdin);
+
+scanf("%s", &produto[i].editora);
+printf("ISBN :  ");
+fflush(stdin);
+
+scanf("%d", &produto[i].isbn);
+printf("Quantidade de exemplares: ");
+fflush(stdin);
+scanf("%d", &produto[i].quantidadeExemplares);
+
+printf("Caixa que estava a obra :  ");
+scanf("%d", &produto[i].caixa);
+
+printf("\nTIPO: \n[1] Revista | [2] Livro\n");
+fflush(stdin);
+scanf("%d", &produto[i].tipo);
+
+fwrite(&produto[i], sizeof(Cadastroproduto), 1, arq);
+
+}
+fclose(arq); // aborta o programa
+}
+else
+{
+printf("\nErro ao abrir o arquivo para leitura!\n");
+exit(1); // aborta o programa
+}
+}
+
+int contarRegistro(Cadastroproduto produto[MAX])
+{
+FILE * arq = fopen("dadosObra.txt", "r");
+if(arq != NULL)
+{
+int contador = 0;
+while(1)//irá percorrer todo o arquivo e quando não encontrar mais registros, o laço termina
+{
+Cadastroproduto p;//criando um registro temporário
+
+//leitura de registro por registro, ou seja, pega um registro
+int registro = fread(&p, sizeof(Cadastroproduto), 1, arq);
+
+//se a leitura do registro retornar 0, siginifica que a próxima posição do arquivo é zero ai saimos do laço
+if(registro < 1)
+break;
+else
+produto[contador] = p;//pega registro lido e colocar vetor de registro
+contador++;
+}
+fclose(arq); // fecha o arquivo
+return contador;//retorna a quantidade de registros que há no arquivo
+}
+else
+{
+printf("\nErro ao abrir o arquivo para leitura!\n");
+exit(1); // aborta o programa
+}
+}
+
+void ListarTodasObras(Cadastroproduto produto[MAX]){
+identificacao();
+
+int quantidadeproduto = contarRegistro(produto);
+int i;
+
+printf("\n>>>> LISTA DE OBRAS <<<<  %d\n", quantidadeproduto);
+
+printf("CODIGO \t| TITULO \t| TIPO \t| CAIXA \t| AUTOR");
+for(i = 0; i < quantidadeproduto; i++)
+{
+printf("\n%d \t| %s \t| %d \t|%d \t|%s \t", i+1, produto[i].nomeobra, produto[i].tipo, produto[i].caixa, produto[i].nomeautor);
+}
+}
+
+void ListarObrasTipo(int buscaCategoria, Cadastroproduto produto[MAX]){
+identificacao();
+
+int quantidadeproduto = contarRegistro(produto);
+int i;
+
+printf("\n>>>>LISTA DE OBRAS POR TIPO<<<< \n");
+if (buscaCategoria == 1) {
+printf("Categoria pesquisada: Revista\n");
+}else if (buscaCategoria == 2) {
+printf("Categoria pesquisada: Livros \n");
+
+}else if (buscaCategoria <= 3) {
+printf("Não existe essa categoria \n");
+}
+
+printf("CODIGO \t| TITULO \t| TIPO \t| CAIXA \t| AUTOR");
+for(i = 0; i < quantidadeproduto; i++)
+{
+if(produto[i].caixa == buscaCategoria){
+printf("\n%d \t| %s \t| %d \t|%d \t|%s \t", i+1, produto[i].nomeobra, produto[i].tipo, produto[i].caixa, produto[i].nomeautor);
+}
+}
+}
+
+
+void ListarObrasCaixa(int buscarLote, Cadastroproduto produto[MAX]){
+identificacao();
+
+int quantidadeproduto = contarRegistro(produto);
+int i;
+
+printf("\n>>>>LISTA DE OBRAS POR CAIXA<<<< \n");
+//printf("Caixa pesquisada: %d \n", buscarLote);
+
+if (buscarLote == 1) {
+printf("CAIXA 1 BUSCADA \n");
+}else if (buscarLote == 2) {
+printf("CAIXA 2 BUSCADA \n");
+
+}else if (buscarLote == 3) {
+printf("CAIXA 3 BUSCADA \n");
+}else if (buscarLote == 4) {
+printf("CAIXA 4 BUSCADA \n");
+
+}else if (buscarLote == 5) {
+printf("CAIXA 5 BUSCADA \n");
+} else if (buscarLote <= 6) {
+printf("NÃO ENCONTRADA ESSA NUMERAÇÃO DE CAIXA! \n");
+}
+
+printf("CODIGO \t| TITULO \t| TIPO \t| CAIXA \t| AUTOR");
+for(i = 0; i < quantidadeproduto; i++)
+{
+if(produto[i].caixa == buscarLote){
+printf("\n%d \t| %s \t| %d \t|%d \t|%s \t", i+1, produto[i].nomeobra, produto[i].tipo, produto[i].caixa, produto[i].nomeautor);
+}
+}
+}
