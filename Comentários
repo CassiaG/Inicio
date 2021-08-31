@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+    <meta charset="UTF-8">
+    <!--Permite a acentuação-->
+    <meta name "viewport" content="widht =device-with, initial-scale=1.0">
+    <!--Faz com que o site ocupe 100% da tela-->
+    <tittle> HTML </tittle>
+    <!--Titulo do navegador-->
+  </head>
+
+  <body>
+    <h1> Hello World !! </h1>
+    <!--Titulo que segue hierarquia ate h6-->
+    <p> Meu manual de html; </p>
+    <!--Paragrafo-->
+    <hr>
+    <!--Colocar linha na horizontal-->
+    </hr>
+
+ /*   <img src="html.jpg" /> */
+    <!--src= origem do arquivo alt=texto da imagem-->
+
+    <br>
+    <!--Quebra de linha-->
+    </br>
+    <h2> Html é uma linguagem de
+      <em> marcação de hipertexto </em>
+      <!-- <em> faz com que texto fique em itálico
+</em>-->
+      🖖
+      <!--Verificar código dos emojis no site Emojipedia-->
+    </h2>
+
+    <hr>
+    <!--Colocar linha na horizontal-->
+    </hr>
+    <br>
+    <!--Quebra de linha-->
+    </br>
+    <h3>
+      <strong> Semântica é muito importante: </strong>
+    </h3>
+    <!--strong deixa o texto negrito-->
+    <p>
+      <pre>
+        <!--Considera toda a formatação de escrita e linhas-->
+        <small> Html </small>
+        <!--Letras pequenas-->
+        <del> É linguagem de programação </del>
+        <!--Texto riscado-->
+        <ins> Hyper Text Markup Language </ins>
+        <!--Texto sublinhado que preenche uma coluna-->
+        H<sub>2</sub>O
+        <!--Texto subescrito-->
+        X<sup>3</sup>
+        <!--Texto subreescrito-->
+        <code> CSS é uma linguagem de estilo </code>
+        <!--Deixa as letras monoespaçadas-->
+        <q>conhecida como folhas de estilo em cascata</q>
+        <!--coloca aspas em citações simples-->
+        <blockquote> Sem o CSS o site ficaria muito pesado!! </blockquote>
+        <!--fazer citações em blocos-->
+        <abbr>HTML, CSS e Javascript </abbr>
+        <!--Abreviar palavras-->
+      </pre>
+    </p>
+    <hr>
+    <!--Colocar linha na horizontal-->
+    </hr>
+    <h4> Monstando listas Ordenadas: </h4>
+    <ol type '1'>
+      <!--Pode ser ordenado por 1, 2, 3.. ou A, B, C.. ou I, II, III..-->
+      <li> Acordar; </li>
+      <li> Se exercitar; </li>
+      <li> Tomar Café; </li>
+      <li> Estudar; </li>
+      <li> Limpar o quintal; </li>
+      <li> Trabalhar.. </li>
+      </li>
+    </ol type>
+
+    <h5> Monstando listas Não Ordenadas: </h5>
+    <ul type "disc">
+      <!--Pode ser substituido por circle ou square-->
+      <li> Legião Urbana </li>
+      <li> Alice in chains </li>
+      <li> Titãs </li>
+      <li> Charlie Brown Jr </li>
+    </ul>
+
+    <h6> Monstando listas Mistas: </h6>
+    <!-- Lista misturada-->
+    <ol>
+      <li> Acordar</li>
+    </ol>
+    <ul>
+      <li> Ouvir Alice in chains </li>
+    </ul>
+    <p>
+      <strong> Mostrando Lista de Definição: </strong>
+    </p>
+    <!-- Lista de definição-->
+    <dl>
+      <dt>Refrigerante de Uva </dt>
+      <!-- Um termo -->
+      <dd>É uma bebida top </dd>
+      <!-- Uma definição-->
+    </dl>
+    <script>
+      window.alert("Javascript chegou"); <!-- emite un mlerta na tela -->
+      window.prompt("Qual o seu nome") <!-- caixa de texto para digitar -->
+      window.confirm("Gosta de Js?") <!-- recwbe uma confirmacao-->
+    </script>
+
+
+  </body>
+
+</html>
