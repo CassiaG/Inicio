@@ -109,9 +109,9 @@
       <!-- Uma definição-->
     </dl>
     <script>
-      window.alert("Javascript chegou"); <!-- emite un mlerta na tela -->
-      window.prompt("Qual o seu nome") <!-- caixa de texto para digitar -->
-      window.confirm("Gosta de Js?") <!-- recwbe uma confirmacao-->
+      window.alert("Javascript chegou"); /* emite un mlerta na tela */
+      window.prompt("Qual o seu nome") /* caixa de texto para digitar */
+      window.confirm("Gosta de Js?") /* recebe uma confirmacao */
     </script>
 
 
