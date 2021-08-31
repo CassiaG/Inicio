@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main()
+{
+   int valores;
+   
+   cout << "selecione um lanche:\n";
+   cout << "[1]=X-Bacon, [2]=X-Salada\n";
+   
+   cin << valores;
+   
+   switch (valores) {
+       case 1:
+       cout << "Valor X Bacon: R$ 18;00\n";
+       break;
+       
+       case 2:
+       cout << "Valor X Salada: R$ 15;00\n";
+       break;
+       
+       default:
+       cout << "Opção escolhida invalida\n";
+   }
+
+      //  cout << "\n Lanchonete Kiko\n";
+       
+    return 0;
+}
