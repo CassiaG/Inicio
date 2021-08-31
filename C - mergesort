@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h> 
+
+void mergesort(int *loja, int n);
+void sort(int *loja, int *c, int i, int f);
+void merge(int *loja, int *c, int i, int m, int f); 
+
+int main (void) {
+
+printf("Cassia Aparecida Gomes Alves RA: 20084478-5\n");
+
+ int i; 
+int loja[8] = { 2, 0, 0, 8, 4, 4, 7, 8}; 
+
+for (int i = 0 ; i < 8 ; ++i) {
+printf("%i", loja [i]);
+}
+printf("\n");
+
+mergesort(loja, 8); 
+for (i = 0; i < 8; i++) 
+printf("%i ", loja[i]); 
+
+return 0;
+} 
+
+void mergesort(int *loja, int n) {
+
+ int *c = malloc(sizeof(int) * n);
+ sort(loja, c, 0, n - 1); 
+free(c);} 
+
+void sort(int *loja, int *c, int i, int f) {
+ if (i >= f)
+ return; 
+
+int m = (i + f) / 2; 
+sort(loja, c, i, m); 
+sort(loja, c, m + 1, f);
+
+if (loja[m] <= loja[m + 1]) 
+
+return; 
+
+merge(loja, c, i, m, f);
+
+} 
+
+void merge(int *loja, int *c, int i, int m, int f) 
+{ 
+int z, 
+iv = i, 
+ic = m + 1; 
+
+for (z = i; z <= f; z++) c[z] = loja[z]; z = i; 
+
+while (iv <= m && ic <= f) {
+
+if (c[iv] <= c[ic]) loja[z++] = c[iv++]; 
+else loja[z++] = c[ic++]; 
+} 
+while (iv <= m) loja[z++] = c[iv++];
+
+ while (ic <= f) loja[z++] = c[ic++];
+
+}
