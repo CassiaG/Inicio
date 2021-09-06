@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="Google-Chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testando</title>
+    <link rel ="stylesheet" type="text/css" href ="style.css" media ="screen" />
+    <!--chamar o Css no html-->
+
+    <style>
+    div#area {
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    background: grey;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    
+    }
+
+    </style>
+</head>
+<body>
+
+    <h1> Testando Html, Css e Javascript </h1>
+
+    <!--DOM, é um conjunto de objetos no navegador que da acesso a componentes internos do website-->
+
+    <!-- <p> Clique aqui </p>
+
+    <div> Clique em mim </div> -->
+
+
+    <blockquote> Muda, que quando a gente muda, o mundo muda com a gente,
+        a gente muda o mundo na mudança da mente,
+        e quando a gente muda a gente anda pra frente,
+        e quando a gente manda, ninguém manda na gente,
+        Na mudança de atitude, não há mal que não se mude,
+        nem doença sem cura!
+        Na mudança de postura a gente fica mais seguro,
+       <strong>na mudança do presente, a gente molda o futuro! </strong> <sub>Gabriel o Pensador</sub>
+    </blockquote>
+
+    <div id="area" > 
+        <!--onclick="clicar()" onmouseenter="entrar()" onmouseout="sair()" -->
+       <strong> Interaja.. </strong> 
+    </div>
+    <script>
+
+        var a = window.document.getElementById('area')
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', entrar)
+        a.addEventListener('mouseout', sair)
+
+    function clicar (){
+        var a = window.document.getElementById('area')
+        a.innerText = "Clicar!"
+        a.style.background = 'red'
+    }
+
+    function entrar (){
+        var a = window.document.getElementById('area')
+        a.innerText = "Entrar"
+        a.style.background = 'yellow'
+    }
+
+    function sair (){
+        var a = window.document.getElementById('area')
+        a.innerText = "Sair"
+        a.style.background = 'green'
+    }
+    </script>
+    <p>Escolha um valor <input type="number" name="txtvel" id="txtvel"> </p><!-- Foi criado para usuario escolher um numero-->
+    <input type='button' value='verificar' onclick='calcular()'> <!-- foi criado o botão de click-->
+    <div id="res" > 
+
+    </div>
+
+
+        <script>
+
+            // usando if e else:
+            function calcular() {
+            var txtv = window.document.querySelector('input#txtvel') // o mesmo que elementbyID
+            var res = window.document.querySelector('div#res') // 
+            var vel = Number(txtv.value) // variavel recebe o valor digitado
+            res.innerHTML = `<p> O número escolhido é ${vel} </p>` 
+           if (vel <= 5) {
+            res.innerHTML += `<p>você escolheu um número igual ou menor que 5</p>`
+           } else {
+           res.innerHTML+=`<p>você escolheu um número maior que 5</p>`
+        }
+    }
+
+        </script>
+
+
+
+    <script src ="Javascript.js" ></script> <!-- Chamar o javascript no html -->
+    
+</body>
+</html>
